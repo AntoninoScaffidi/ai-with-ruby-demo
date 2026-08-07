@@ -1,24 +1,25 @@
-# README
+# ai-with-ruby-demo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Companion Rails app for the [AI with Ruby](https://antoninoscaffidi.github.io/series/ai-with-ruby/) blog series ([Italiano](https://antoninoscaffidi.github.io/it/series/ai-with-ruby/)) — a chatbot built step by step with [RubyLLM](https://rubyllm.com), from a plain chat form to persisted conversations, semantic search, and tool calling.
 
-Things you may want to cover:
+Each blog post has a matching git tag here (`episode-2`, `episode-3`, ...) so you can check out the exact code state discussed in that post:
 
-* Ruby version
+```bash
+git checkout episode-2
+```
 
-* System dependencies
+## Stack
 
-* Configuration
+- Rails 8, Tailwind CSS
+- SQLite
+- [RubyLLM](https://rubyllm.com) (OpenAI by default)
 
-* Database creation
+## Setup
 
-* Database initialization
+```bash
+bundle install
+cp .env.example .env   # then fill in your own OPENAI_API_KEY
+bin/dev
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+App available at `http://127.0.0.1:3000`.
