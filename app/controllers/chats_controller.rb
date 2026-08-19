@@ -4,7 +4,16 @@ class ChatsController < ApplicationController
   end
 
   def create
-    current_conversation.ask(params[:message])
+    ConversationResponseJob.perform_later(current_conversation.id, params[:message])
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to new_chat_path }
+    end
+  end
+
+  def destroy
+    session.delete(:conversation_id)
     redirect_to new_chat_path
   end
 

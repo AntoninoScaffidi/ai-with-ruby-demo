@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  resource :chat, only: [:new, :create]
+  resource :chat, only: [:new, :create, :destroy]
 
   # Defines the root path route ("/")
   root "chats#new"

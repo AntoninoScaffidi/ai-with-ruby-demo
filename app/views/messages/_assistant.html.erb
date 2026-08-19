@@ -1,0 +1,7 @@
+<% assistant = local_assigns[:assistant] || local_assigns[:message] %>
+<div id="<%= dom_id(assistant) %>" class="text-left">
+  <p class="text-xs text-gray-500 mb-1">assistant</p>
+  <div id="<%= dom_id(assistant) %>_content" class="inline-block rounded-md px-3 py-2 bg-gray-100">
+    <%= assistant.content %>
+  </div>
+</div>

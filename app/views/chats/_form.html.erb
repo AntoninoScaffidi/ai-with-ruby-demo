@@ -1,0 +1,17 @@
+<div id="new_message">
+  <%= form_with url: chat_path, method: :post, class: "flex flex-col gap-3" do %>
+    <textarea
+      name="message"
+      rows="3"
+      placeholder="Ask something..."
+      class="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+    ></textarea>
+
+    <button
+      type="submit"
+      class="self-start bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700"
+    >
+      Send
+    </button>
+  <% end %>
+</div>
