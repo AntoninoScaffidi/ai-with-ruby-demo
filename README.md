@@ -11,14 +11,18 @@ git checkout episode-2
 ## Stack
 
 - Rails 8, Tailwind CSS
-- SQLite
+- PostgreSQL with [pgvector](https://github.com/pgvector/pgvector) (as of episode 5, for semantic search)
 - [RubyLLM](https://rubyllm.com) (OpenAI by default)
 
 ## Setup
 
+Needs a PostgreSQL server with the `vector` extension available (`CREATE EXTENSION vector` must succeed — see [pgvector's install docs](https://github.com/pgvector/pgvector#installation) if it doesn't).
+
 ```bash
 bundle install
 cp .env.example .env   # then fill in your own OPENAI_API_KEY
+bin/rails db:create db:migrate
+bin/rails ruby_llm:load_models   # needed once, so RubyLLM.embed can resolve the embedding model
 bin/dev
 ```
 

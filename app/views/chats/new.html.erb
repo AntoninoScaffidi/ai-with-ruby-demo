@@ -1,7 +1,10 @@
 <div class="max-w-xl mx-auto mt-16 px-4">
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-semibold">RubyLLM chat demo</h1>
-    <%= button_to "New conversation", chat_path, method: :delete, class: "text-sm text-gray-500 hover:text-gray-700" %>
+    <div class="flex items-center gap-4">
+      <%= link_to "Search", search_path, class: "text-sm text-gray-500 hover:text-gray-700" %>
+      <%= button_to "New conversation", chat_path, method: :delete, class: "text-sm text-gray-500 hover:text-gray-700" %>
+    </div>
   </div>
 
   <%= turbo_stream_from "conversation_#{@conversation.id}" %>

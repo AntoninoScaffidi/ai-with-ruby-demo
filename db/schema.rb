@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_09_050730) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_22_045433) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+  enable_extension "vector"
+
   create_table "conversations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "model_id"
@@ -25,6 +29,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_09_050730) do
     t.json "content_raw"
     t.integer "conversation_id", null: false
     t.datetime "created_at", null: false
+    t.vector "embedding", limit: 1536
     t.integer "input_tokens"
     t.integer "model_id"
     t.integer "output_tokens"
@@ -35,6 +40,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_09_050730) do
     t.integer "tool_call_id"
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["embedding"], name: "index_messages_on_embedding", opclass: :vector_cosine_ops, using: :hnsw
     t.index ["model_id"], name: "index_messages_on_model_id"
     t.index ["role"], name: "index_messages_on_role"
     t.index ["tool_call_id"], name: "index_messages_on_tool_call_id"

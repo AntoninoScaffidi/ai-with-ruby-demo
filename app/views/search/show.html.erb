@@ -1,0 +1,37 @@
+<div class="max-w-xl mx-auto mt-16 px-4">
+  <h1 class="text-2xl font-semibold mb-6">Search past conversations</h1>
+
+  <%= form_with url: search_path, method: :get, class: "flex gap-3 mb-8" do %>
+    <input
+      type="text"
+      name="q"
+      value="<%= @query %>"
+      placeholder="What are you looking for?"
+      class="flex-1 border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+    >
+    <button
+      type="submit"
+      class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700"
+    >
+      Search
+    </button>
+  <% end %>
+
+  <% if @query.present? %>
+    <% if @results.present? %>
+      <div class="space-y-4">
+        <% @results.each do |message| %>
+          <div class="rounded-md border border-gray-200 p-3">
+            <div class="flex items-center justify-between mb-1">
+              <p class="text-xs text-gray-500"><%= message.role %></p>
+              <p class="text-xs text-gray-400">similarity: <%= (1 - message.neighbor_distance).round(3) %></p>
+            </div>
+            <p><%= message.content %></p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500">No matching messages yet — nothing has an embedding, or nothing is close enough.</p>
+    <% end %>
+  <% end %>
+</div>
